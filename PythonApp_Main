@@ -1,0 +1,116 @@
+#H.Dip in Data Analytics (2019 / 2020)
+#APPLIED DATABASES STUDENT G00376300
+#DBConnect.py handles connections to the MySql world database
+#Call this file to continue
+from DBConnect import *
+
+
+#MENU Choice 2: Input IndepYear to view Countries
+#When a year is entered, the Country’s Name, Continent and Independence Year is shown for
+#each country whose Independence Year corresponds to what the user entered.
+#If no countries became independent in the year specified by the user nothing is shown.
+def view_IndepYear():
+    print("\n"+"Countries by Independence Year")
+    print("-"*30)
+    IndepYear = input( "Enter Year : ")
+    find_IndepYear(IndepYear)
+
+
+#MENU Choice 3: Add new person to world database
+#The user is asked to enter details of a new person, the person is then added to the
+#world database. NOTE: The user should not be prompted to enter a personID.
+def new_person():
+    print("\n"+"Add New Person")
+    print("-"*30)
+    personname = input("Enter Name : ")
+    age = input("Enter Age :")
+    newperson(personname, age) 
+    
+#MENU Choice 4: Input Name to view Countries
+#The user is asked to enter a country name, or part thereof.
+#Any country that contains those letters should be displayed
+def view_country():
+    print("\n"+"Countries by Name")
+    print("-"*25)
+    country = input("Enter Country Name : ")
+    find_Country(country)
+
+  
+
+#MENU Choice 5: view country by population
+#function that prompts user for a less than, greater than or equal to operator
+#and a number then returns all corresponding records 
+#Code adapted from https://github.com/RitRa/Little-Python-application-gmit-semester-3-2019
+def countryPopulation():
+    print("\n"+"Countries by Pop")
+    print("-"*25)
+#The user is asked to enter <, > or = and a number followed by the population of a country   
+    valid_operator = ['<','>','=']
+ #If the user does not enter <, > or = they are repeatedly 
+ #asked until a valid choice is input
+ #using a while loop
+    operator = input("Enter < > or = : ")
+    while operator not in valid_operator:
+       operator = input("Enter < > or = : ")
+    population = input("Enter population : ")
+    country_Population(operator,population)
+
+
+
+
+def main():
+#Display main menu
+  print("") 
+  print("")
+  print("World DB")
+  print("")
+  print("===== ")
+  print("MENU")
+  print("----")
+  print("1 - View People")
+  print("2 - View Countries by Independence Year")
+  print("3 - Add New Person")
+  print("4 - View Countries by name")
+  print("5 - View Countries by population ")
+  print("6 - Find Students by Address ")
+  print("7 - Add New Course ")
+  print("x - Exit application")
+#Prompt user to select an option from the WorldDB menu
+#input becomes a variable used in all further functions
+  Choice = input("Choice:")  
+#Call relevant function as per user input at Choice
+  if Choice == "1":
+    view_people()
+    main()
+  elif Choice == "2":  
+    view_IndepYear()
+    main()
+  elif Choice == "3":  
+    new_person()
+    main()
+  elif Choice == "4":  
+    view_country()
+    main()  
+  elif Choice == "5":  
+    countryPopulation()
+    main()
+  elif Choice == "6":  
+    print("<<Option 6 is unavailable>>")
+    main()  
+  elif Choice == "7":  
+    print("<<Option 7 is unavailable>>")
+    main()  
+  elif Choice == "x":  
+    quit()
+  else:
+    main()
+    
+  
+  
+
+if __name__ == "__main__":
+#python main function is the starting point of any program
+	main()
+
+
+    
