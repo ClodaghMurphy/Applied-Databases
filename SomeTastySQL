@@ -1,0 +1,49 @@
+select distinct c.name, h.dateArrived, co.name
+from country co
+inner join city c
+	on co.Code = c.CountryCode
+inner join hasvisitedcity h
+	on h.cityID = c.ID
+where personID = 2
+order by c.Name;
+
+
+SELECT name, lifeexpectancy FROM country
+WHERE lifeexpectancy < (SELECT AVG(lifeexpectancy) FROM country)
+AND Continent =2
+GROUP BY name;
+
+
+select *, if (age < 29, "Late teens/Twenties", "Thirtysomething") as Stage
+from person
+
+
+SELECT  city.name,country.name,countrylanguage.language,countrylanguage.percentage
+	   FROM country
+         
+INNER JOIN city ON country.Capital = city.ID
+INNER join countrylanguage on countrylanguage.CountryCode = country.Code
+WHERE continent = 3
+AND Isofficial = TRUE
+
+ORDER by city.name, country.name,countrylanguage.language,countrylanguage.percentage ASC;
+
+                 
+select distinct p.personname, c.name,
+
+(CASE 
+	when DATEDIFF(dateLeft, dateArrived)  < 20 THEN "Short"
+	when DATEDIFF(dateLeft, dateArrived) between 20 and 99 THEN "Long"
+	ELSE "Very Long"
+END) 
+as "Stay Length"
+
+from country co
+INNER JOIN city c
+	on co.Code = c.CountryCode
+INNER JOIN hasvisitedcity h
+	on h.cityID = c.ID
+INNER JOIN person p
+	on p.personID = h.personID
+ORDER BY p.personname, c.Name;
+
