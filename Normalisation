@@ -1,0 +1,37 @@
+
+Critique of Table1
+In my opinion, Table 1 is an example of bad use of a database structure.
+
+Deletion Anomaly
+Table 1 displays just one staff member in the HR Department, Alice ID108.
+If this person were to leave the HR Department, it would be necessary to delete their personal data in accordance with GDPR.  That action would have the unfavourable result of all information relating to the department being deleted – a deletion anomaly. 
+Insertion Anomaly
+In the case of a newly established Department e.g. Business Intelligence based in Cork with a budget of 500,000 being entered into the table, a problem would immediately be encountered because the new Department does not yet have any employees.  The EmployeeID* is the primary key, a unique reference that cannot be a null value.  Therefore records cannot be input without this reference.
+This is another undesirable feature of the database and is an Insertion Anomaly whereby the poor scheme design results in data not being recorded.
+
+
+Update Anomaly
+
+If Table 1 above required DeptBudget of Sales to be updated with new higher values, it would require multiple inputs of the same information, this would be inefficient because the same information needs to be input repeatedly and may result in errors. 
+Similarly, if Albert currently in R&D Galway were to relocate to the Sales Dept based in Dublin, the DeptName in addition to Location and Budget fields would all require to be amended.
+This scenario is referred to as an Update Anomaly.
+
+Suggested Improvements
+The database, which consists of just one table as proposed in this example, does not align with the general idea of normalisation the process of organising multiple attributes and relations to minimise data redundancy.  Instead, the table should be divided into interlinked smaller tables with fewer attributes thereby allowing it to be more efficiently managed.
+A better solution would be to create two separate tables – Employees and Departments.
+
+Employees to contain employee data only.
+• Employee ID
+• Employee Name
+• Employee Salary
+• New Field* DeptID – a foreign key that references primary key of the Departments table 
+
+Departments to contain departmental data only.
+• New Field* DeptID – primary key
+• Department Name
+• Department Location
+• Department Budget
+
+
+This new format would provide a more efficient database and prevent the previously set out anomalies.
+
